@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Salutem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+</head>
+
+<body>
+  <header class="center-align">
+    <p>Hola, bienvenid@ a </p>
+    <h1>Salutem</h1>
+  </header>
+  <section id="main" class="center-align s12">
+    <!-- INPUTS -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="user-mail-login" type="email" class="validate">
+        <label for="user-mail-login">Correo Electrónico</label>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="user-password-login" type="password" class="validate">
+          <label for="user-password-login">Contraseña</label>
+        </div>
+        <!-- BOTON LOGIN -->
+        <div id="section-btn-log-in">
+          <a id="btn-log-in" class="waves-effect waves-light btn-large btn-initial">Iniciar Sesión</a>
+          <p>¿No tienes una cuenta?,
+            <a id="go-to-sign-in">Creala aquí</a>
+          </p>
+        </div>
+        <!-- BOTON SIGNUP -->
+        <div id="section-btn-sign-up" hidden>
+          <a id="btn-sign-in" class="waves-effect waves-light btn-large btn-initial">Registrate</a>
+          <p>Si tienes cuenta,
+            <a id="go-to-log-in">Inicia sesion</a>
+          </p>
+        </div>
+  </section>
+
+  <section id="response-log-in" class="center-align" hidden>
+    <h4 for="">ENTRASTE</h4>
+  </section>
+
+  <section id="response-sign-up" class="center-align" hidden>
+    <h4 for="">BIENVENIDO</h4>
+  </section>
+
+  <section id="log-out" class="center-align" hidden>
+    <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>
+  </section>
+
+  <!-- botones de registro para google, Facebook -->
+  <section class="center-align s12" hidden>
+    <a class="waves-effect waves-light btn">
+      <i class="material-icons left">email</i>Correo Electrónico</a>
+    <a class="waves-effect waves-light btn indigo darken-3">
+      <i class="material-icons left fa fa-facebook"></i>Facebook</a>
+    <a class="waves-effect waves-light btn red darken-3">
+      <i class="material-icons left fa fa-google"></i>Google</a>
+  </section>
+
+
+  <!-- <section id="log-in">
+    <label for="">Escribe tu correo</label>
+    <input type="email" id="user-mail-login">
+    <label for="">Escribe tu contraseña</label>
+    <input type="text" id="user-password-login">
+    <button id="btn-log-in">INICIA SESION</button>
+  </section>
+
+  <section id="sign-in">
+    <label for="">Escribe tu correo</label>
+    <input type="email" id="user-mail-signin">
+    <label for="">Escribe tu contraseña</label>
+    <input type="text" id="user-password-signin">
+    <button id="btn-sign-in">REGISTRATE</button>
+  </section>
+
+  <section id="log-out" hidden>
+    <button id="btn-log-out">SALIR</button>
+  </section>
+
+  <section id="response" hidden>
+    <label for="">ENTRASTE</label>
+  </section> -->
+
+  <script src="js/materialize.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

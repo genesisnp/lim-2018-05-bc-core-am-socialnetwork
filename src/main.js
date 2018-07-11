@@ -25,12 +25,12 @@ let user = {
 }
 
 let config = {
-  apiKey: "AIzaSyDW8PIGL6vbFaMhRy0PpXtNv_e59eZYmfs",
-  authDomain: "auth-social-network.firebaseapp.com",
-  databaseURL: "https://auth-social-network.firebaseio.com",
-  projectId: "auth-social-network",
-  storageBucket: "auth-social-network.appspot.com",
-  messagingSenderId: "1041115691430"
+  apiKey: "AIzaSyCogi6h8Zzei84YxO-G5vDVncNAtC5JQR8",
+  authDomain: "salutem-2a3f8.firebaseapp.com",
+  databaseURL: "https://salutem-2a3f8.firebaseio.com",
+  projectId: "salutem-2a3f8",
+  storageBucket: "",
+  messagingSenderId: "806151192945"
 };
 
 firebase.initializeApp(config);

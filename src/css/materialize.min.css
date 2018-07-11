@@ -2144,8 +2144,8 @@
 
 html {
   line-height: 1.15;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%
+  text-size-adjust: 100%;
+  text-size-adjust: 100%
 }
 
 body {
@@ -2190,7 +2190,7 @@ pre {
 
 a {
   background-color: transparent;
-  -webkit-text-decoration-skip: objects
+  text-decoration-skip: objects
 }
 
 abbr[title] {
@@ -2290,7 +2290,7 @@ button,
 html [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button
+  appearance: button
 }
 
 button::-moz-focus-inner,
@@ -2344,17 +2344,17 @@ textarea {
 }
 
 [type="search"] {
-  -webkit-appearance: textfield;
+  appearance: textfield;
   outline-offset: -2px
 }
 
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none
+  appearance: none
 }
 
 ::-webkit-file-upload-button {
-  -webkit-appearance: button;
+  appearance: button;
   font: inherit
 }
 
@@ -2419,7 +2419,7 @@ a {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
+  box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center
@@ -2603,7 +2603,7 @@ video.responsive-video {
 .breadcrumb [class*="mdi-"],
 .breadcrumb i.material-icons {
   display: inline-block;
-  float: left;
+  display: float left;
   font-size: 24px
 }
 
@@ -2767,11 +2767,11 @@ ul.staggered-list li {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
+  box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
+  box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -4691,12 +4691,12 @@ small {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  box-orient: vertical;
+  box-direction: normal;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 1;
+  box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -4704,7 +4704,7 @@ small {
 }
 
 .card.horizontal .card-stacked .card-content {
-  -webkit-box-flex: 1;
+  box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1
@@ -4851,11 +4851,11 @@ small {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
+  box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
+  box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -4918,7 +4918,7 @@ small {
 }
 
 .tabs.tabs-fixed-width .tab {
-  -webkit-box-flex: 1;
+  box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1
@@ -4981,7 +4981,7 @@ small {
     display: flex
   }
   .tabs .tab {
-    -webkit-box-flex: 1;
+    box-flex: 1;
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1
@@ -5281,8 +5281,8 @@ button.btn-floating {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
+  box-orient: vertical;
+  box-direction: reverse;
   -webkit-flex-direction: column-reverse;
   -ms-flex-direction: column-reverse;
   flex-direction: column-reverse
@@ -5312,7 +5312,7 @@ button.btn-floating {
 }
 
 .fixed-action-btn.toolbar ul li {
-  -webkit-box-flex: 1;
+  box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -5602,7 +5602,7 @@ body.keyboard-focused .dropdown-content li:focus {
 .waves-circle {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
+  mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
 }
 
 .waves-input-wrapper {
@@ -5623,7 +5623,7 @@ body.keyboard-focused .dropdown-content li:focus {
   height: 2.5em;
   line-height: 2.5em;
   border-radius: 50%;
-  -webkit-mask-image: none
+  mask-image: none
 }
 
 .waves-block {
@@ -5941,7 +5941,7 @@ body.keyboard-focused .dropdown-content li:focus {
   position: relative;
   -webkit-transition: opacity .4s;
   transition: opacity .4s;
-  -webkit-backface-visibility: hidden
+  backface-visibility: hidden
 }
 
 .materialboxed:hover:not(.active) {
@@ -7264,7 +7264,7 @@ input[type=range]+.thumb.active .value {
 }
 
 input[type=range] {
-  -webkit-appearance: none
+  appearance: none
 }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -7283,7 +7283,7 @@ input[type=range]::-webkit-slider-thumb {
   transition: -webkit-box-shadow .3s;
   transition: box-shadow .3s;
   transition: box-shadow .3s, -webkit-box-shadow .3s;
-  -webkit-appearance: none;
+  appearance: none;
   background-color: #26a69a;
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
@@ -8455,8 +8455,8 @@ input[type=range]::-ms-thumb {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  box-orient: vertical;
+  direction: normal;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -8468,7 +8468,7 @@ input[type=range]::-ms-thumb {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
+  box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -8514,7 +8514,7 @@ input[type=range]::-ms-thumb {
 }
 
 .datepicker-date-display {
-  -webkit-box-flex: 1;
+  box-flex: 1;
   -webkit-flex: 1 auto;
   -ms-flex: 1 auto;
   flex: 1 auto;
@@ -8539,7 +8539,7 @@ input[type=range]::-ms-thumb {
 }
 
 .datepicker-calendar-container {
-  -webkit-box-flex: 2.5;
+  box-flex: 2.5;
   -webkit-flex: 2.5 auto;
   -ms-flex: 2.5 auto;
   flex: 2.5 auto
@@ -8613,7 +8613,7 @@ input[type=range]::-ms-thumb {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
+  box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between
@@ -8636,14 +8636,14 @@ input[type=range]::-ms-thumb {
     max-width: 625px
   }
   .datepicker-container.modal-content {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
+    box-orient: horizontal;
+    box-direction: normal;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row
   }
   .datepicker-date-display {
-    -webkit-box-flex: 0;
+    box-flex: 0;
     -webkit-flex: 0 1 270px;
     -ms-flex: 0 1 270px;
     flex: 0 1 270px
@@ -8668,8 +8668,8 @@ input[type=range]::-ms-thumb {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  box-orient: vertical;
+  box-direction: normal;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -8681,7 +8681,7 @@ input[type=range]::-ms-thumb {
 }
 
 .timepicker-digital-display {
-  -webkit-box-flex: 1;
+  box-flex: 1;
   -webkit-flex: 1 auto;
   -ms-flex: 1 auto;
   flex: 1 auto;
@@ -8726,7 +8726,7 @@ input[type=range]::-ms-thumb {
 }
 
 .timepicker-analog-display {
-  -webkit-box-flex: 2.5;
+  box-flex: 2.5;
   -webkit-flex: 2.5 auto;
   -ms-flex: 2.5 auto;
   flex: 2.5 auto
@@ -8831,7 +8831,7 @@ input[type=range]::-ms-thumb {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
+  box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between
@@ -8855,8 +8855,8 @@ input[type=range]::-ms-thumb {
     max-width: 600px
   }
   .timepicker-container.modal-content {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
+    box-orient: horizontal;
+    direction: normal;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row

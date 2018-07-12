@@ -1,3 +1,13 @@
+let config = {
+  apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
+    authDomain: "salutem-a2461.firebaseapp.com",
+    databaseURL: "https://salutem-a2461.firebaseio.com",
+    projectId: "salutem-a2461",
+    storageBucket: "salutem-a2461.appspot.com",
+    messagingSenderId: "953244358481"
+};
+
+firebase.initializeApp(config);
 // sections
 let sectionLogIn = document.getElementById("main-log-in");
 let sectionSignUp = document.getElementById("main-sign-up");
@@ -9,6 +19,7 @@ let sectionLogOut = document.getElementById("log-out");
 let btnLogIn = document.getElementById("btn-log-in");
 let btnSignUp = document.getElementById("btn-sign-up");
 let btnLogOut = document.getElementById("btn-log-out");
+let btnFacebook = document.getElementById('btn-facebook');
 
 // inputs
 let txtEmailLogIn = document.getElementById("txt-user-mail-login");
@@ -17,26 +28,29 @@ let txtNameSignUp = document.getElementById("txt-user-name-signup");
 let txtEmailSignUp = document.getElementById("txt-user-mail-signup");
 let txtPasswordSignUp = document.getElementById("txt-user-password-signup");
 
+let database = firebase.database();
+
 // enlaces
 let goToSignUp = document.getElementById("go-to-sign-up");
 let goToLogIn = document.getElementById("go-to-log-in");
 
-let user = {
-  name: '',
-  email: '',
-  password: ''
+function guardarUsuarios(user){
+  let usuarios = {
+    uid: user.uid,
+    name: user.displayName,
+    //dateOfBirth: user.dateOfBirth,
+    // sexo: user.sexo,
+    // city:user.city,
+    // district:user.district,
+    // profilePicture: user.profilePicture,
+    email: user.email,
+    password: user.password,
+  }
+  firebase.database().ref('users/' + usuarios.ui).set(usuarios);
+  console.log(user);
 }
 
-let config = {
-  apiKey: "AIzaSyCogi6h8Zzei84YxO-G5vDVncNAtC5JQR8",
-  authDomain: "salutem-2a3f8.firebaseapp.com",
-  databaseURL: "https://salutem-2a3f8.firebaseio.com",
-  projectId: "salutem-2a3f8",
-  storageBucket: "",
-  messagingSenderId: "806151192945"
-};
 
-firebase.initializeApp(config);
 
 const logOut = () => {
   firebase.auth().signOut().then(() => {
@@ -75,14 +89,15 @@ const logIn = () => {
 }
 
 const verificate = () => {
-  let x = firebase.auth().currentUser;
-  if (x) {
-    x.sendEmailVerification().then(() => {
+  let user = firebase.auth().currentUser;
+  if (user) {
+    user.sendEmailVerification().then(() => {
       console.log("enviando");
-      document.getElementById("user-name-sign-up").innerHTML = user.name;
+      document.getElementById("user-name-sign-up").innerHTML = user.displayName;
       sectionSignUp.hidden = true;
       sectionResponseSignUp.hidden = false;
       sectionLogOut.hidden = false;
+      guardarUsuarios(user);
     }).catch(function (error) {
       console.log(error);
     });
@@ -91,16 +106,17 @@ const verificate = () => {
 
 const signUp = () => {
   const auth = firebase.auth();
-  user.name = txtNameSignUp.value;
-  user.email = txtEmailSignUp.value;
-  user.password = txtPasswordSignUp.value;
-  if (user.email !== "" && user.password !== "") {
-    const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
+  name = txtNameSignUp.value;
+  email = txtEmailSignUp.value;
+  password = txtPasswordSignUp.value;
+    const promise = auth.createUserWithEmailAndPassword(email, password).then(function(){
+      var user = firebase.auth().currentUser;
       verificate();
+      
     });
     promise.catch(e => console.log(e.message));
   }
-}
+
 
 const showSignUp = () => {
   sectionLogIn.hidden = true;
@@ -111,9 +127,31 @@ const showLogIn = () => {
   sectionSignUp.hidden = true;
   sectionLogIn.hidden = false;
 }
+// function agregarUserBd (uid,name){
+//   const conectados = userConect.push({
+//     uid: uid,
+//     name: name,
+//     email:email,
+//     password: password
+//   });
+// }
+const facebook =() => {
+  const providerFacebook = new firebase.auth.FacebookAuthProvider();
+  providerFacebook.addScope('Default fields');
+  firebase.auth().signInWithPopup(providerFacebook).then(function(result){
+    let token = result.credential.accesToken;
+    let user = result.user;
+    console.log('user');
+    
+  }).catch(function(error) {
+     
+      console.log (error);  
+  })
+}
 
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());
 goToLogIn.addEventListener("click", () => showLogIn());
 btnSignUp.addEventListener("click", () => signUp());
 btnLogOut.addEventListener("click", () => logOut());
+btnFacebook.addEventListener('click',() => facebook());

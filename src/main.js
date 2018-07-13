@@ -37,20 +37,18 @@ let goToLogIn = document.getElementById("go-to-log-in");
 function guardarUsuarios(user){
   let usuarios = {
     uid: user.uid,
-    name: user.displayName,
+    // name: user.displayName,
     //dateOfBirth: user.dateOfBirth,
     // sexo: user.sexo,
     // city:user.city,
     // district:user.district,
     // profilePicture: user.profilePicture,
     email: user.email,
-    password: user.password,
+    //password: user.password,
   }
-  firebase.database().ref('users/' + usuarios.ui).set(usuarios);
+  firebase.database().ref('user/' + usuarios.uid).set(usuarios);
   console.log(user);
 }
-
-
 
 const logOut = () => {
   firebase.auth().signOut().then(() => {
@@ -97,6 +95,7 @@ const verificate = () => {
       sectionSignUp.hidden = true;
       sectionResponseSignUp.hidden = false;
       sectionLogOut.hidden = false;
+      validateLogIn ();
       guardarUsuarios(user);
     }).catch(function (error) {
       console.log(error);
@@ -135,19 +134,6 @@ const showLogIn = () => {
 //     password: password
 //   });
 // }
-const facebook =() => {
-  const providerFacebook = new firebase.auth.FacebookAuthProvider();
-  providerFacebook.addScope('Default fields');
-  firebase.auth().signInWithPopup(providerFacebook).then(function(result){
-    let token = result.credential.accesToken;
-    let user = result.user;
-    console.log('user');
-    
-  }).catch(function(error) {
-     
-      console.log (error);  
-  })
-}
 
 btnLogIn.addEventListener("click", () => logIn());
 goToSignUp.addEventListener("click", () => showSignUp());

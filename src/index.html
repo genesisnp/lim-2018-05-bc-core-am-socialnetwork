@@ -74,19 +74,20 @@
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">account_circle</i>
         <input id="txt-user-name-signup" type="text" class="validate">
-        <label for="txt-user-name-signup">Nombre</label>
+        <label for="txt-user-name-signup">Nombres y Apellidos</label>
         <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
       </div>
-<<<<<<< HEAD
-      <!-- <div class="input-field col s12">
-        <input id="txt-user-nacimiento-signup" type="text" class="validate">
-        <label for="txt-user-nacimiento-signup">fecha de nacimiento</label>
-      </div> -->
-      <div class="input-field col s12">
-=======
+
+      <div class="input-field col s6">
+        <input id="txt-date-of-birth-signup" type="text" class="validate">
+        <label for="icon_prefix">Fecha de Nacimiento</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="txt-sexo-signup" type="text" class="validate">
+        <label for="icon_SEX">Sexo</label>
+      </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">email</i>
->>>>>>> 234cdd07ff2d478271363f8988ff730a71b3c271
         <input id="txt-user-mail-signup" type="email" class="validate">
         <label for="txt-user-mail-signup">Correo Electrónico</label>
         <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
@@ -105,12 +106,7 @@
       </div>
       <!-- BOTON SIGNUP -->
       <div id="section-btn-sign-up">
-<<<<<<< HEAD
-        <a id="btn-sign-up" class="waves-effect waves-light btn-large btn-initial">Regístrate</a>
-        <button id="btn-facebook" class="material-icons left fa fa-facebook">Facebook</button>
-=======
         <button id="btn-sign-up" class="waves-effect waves-light btn-large btn-initial">Regístrate</button>
->>>>>>> 234cdd07ff2d478271363f8988ff730a71b3c271
         <p>Si tienes cuenta,
           <a id="go-to-log-in">Inicia sesión</a>
         </p>
@@ -130,6 +126,11 @@
   <section id="response-sign-up" class="center-align" hidden>
     <h4 for="">Bienvenido</h4>
     <h3 id="user-name-sign-up"></h3>
+  </section>
+  <!-- POST -->
+  <section id="post-user">
+    <textarea id="post" cols="30" rows="10"></textarea>
+    <input type="button" value="Publicar" id="btnPublic">
   </section>
 
   <section id="log-out" class="center-align" hidden>

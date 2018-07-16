@@ -26,12 +26,18 @@ const btnGoogleLogIn = document.getElementById("btn-google-log-in");
 const btnFacebookLogIn = document.getElementById("btn-fb-log-in");
 const btnEmailUserResgister = document.getElementById("userRegister");
 const btnFacebookSignUp = document.getElementById("btn-fb-sign-up");
-const btnGoogleSignUp = document.getElementById("btn-google-sign-up")
+const btnGoogleSignUp = document.getElementById("btn-google-sign-up");
+
+const sectionPostUser = document.getElementById('post-user');
+const btnPublic = document.getElementById('btnPublic');
+const post = document.getElementById('post');
 
 // inputs
 const txtEmailLogIn = document.getElementById("txt-user-mail-login");
 const txtPasswordLogIn = document.getElementById("txt-user-password-login");
 const txtNameSignUp = document.getElementById("txt-user-name-signup");
+const txtDateOfBirthSignUp = document.getElementById("txt-date-of-birth-signup");
+const txtSexoSignUp = document.getElementById("txt-sexo-signup");
 const txtEmailSignUp = document.getElementById("txt-user-mail-signup");
 const txtPasswordSignUp = document.getElementById("txt-user-password-signup");
 const txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
@@ -45,28 +51,13 @@ const goToSignUpUsers = document.getElementById("sign-up-users");
 const goToSignUpDoctors = document.getElementById("sign-up-doctors");
 
 function guardarUsuarios(user){
-  let usuarios = {
-    uid: user.uid,
-    // name: user.displayName,
-    //dateOfBirth: user.dateOfBirth,
-    // sexo: user.sexo,
-    // city:user.city,
-    // district:user.district,
-    // profilePicture: user.profilePicture,
-    email: user.email,
-    //password: user.password,
-  }
-  firebase.database().ref('user/' + usuarios.uid).set(usuarios);
+  let uid = user.uid;
+  delete user.uid;
+  firebase.database().ref('user/' + uid).set(user);
   console.log(user);
 }
 
 const patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-
-const user = {
-  name: '',
-  email: '',
-  password: ''
-}
 
 window.onload = () => {
   firebase.auth().onAuthStateChanged(user => {
@@ -85,6 +76,9 @@ window.onload = () => {
       // const providerData = user.providerData;
     } else console.log("no estas logueado");
   });
+  firebase.database().ref('/user').once('value').then(function(snapshot) {
+    console.log(snapshot.val());
+  });
 }
 
 const logOut = () => {
@@ -101,18 +95,18 @@ const logOut = () => {
     sectionResponseSignUp.hidden = true;
     sectionSignUp.hidden = true;
     sectionLogIn.hidden = false;
+    sectionPostUser.hidden = true;
     console.log("saliste");
   });
 }
 
 const ableBtnLogIn = () => {
+  
   if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
     document.getElementById("incorrect-email").hidden = true;
     if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
       document.getElementById("incorrect-password").hidden = true;
-      user.email = txtEmailLogIn.value;
-      user.password = txtPasswordLogIn.value;
-      if (user.email !== "" && user.password !== "") {
+      if (txtEmailLogIn.value !== "" && txtPasswordLogIn.value !== "") {
         logIn();
       }
     } else {
@@ -136,7 +130,7 @@ const validateLogIn = () => {
 
 const logIn = () => {
   const auth = firebase.auth();
-  const promise = auth.signInWithEmailAndPassword(user.email, user.password).then(() => validateLogIn());
+  const promise = auth.signInWithEmailAndPassword(txtEmailLogIn.value, txtPasswordLogIn.value).then(() => validateLogIn());
   promise.catch(e => {
     document.getElementById("incorrect-password").hidden = false;
   });
@@ -150,15 +144,20 @@ const signUpUsers = () => {
 
 const verificate = () => {
   const user = firebase.auth().currentUser;
+  
   if (user) {
     user.sendEmailVerification().then(() => {
+      console.log(user);
       console.log("se envió correo de verificación de cuenta al correo");
-      document.getElementById("user-name-sign-up").innerHTML = user.name;
+      firebase.database().ref('/user/' + user.uid).once('value').then(function(snapshot) {
+        console.log(snapshot.val());
+        var username = (snapshot.val() && snapshot.val().name) || 'Anonymous';
+        document.getElementById("user-name-sign-up").innerHTML = username;
+      });
       sectionSignUp.hidden = true;
       sectionResponseSignUp.hidden = false;
       sectionLogOut.hidden = false;
-      validateLogIn ();
-      guardarUsuarios(user);
+      //validateLogIn ();
     }).catch(function (error) {
       console.log(error);
     });
@@ -168,34 +167,51 @@ const verificate = () => {
 const signUp = () => {
   const auth = firebase.auth();
   //genesis
-  // name = txtNameSignUp.value;
-  // email = txtEmailSignUp.value;
-  // password = txtPasswordSignUp.value;
-  //   const promise = auth.createUserWithEmailAndPassword(email, password).then(function(){
-  //     var user = firebase.auth().currentUser;
-  //     verificate();
+  name = txtNameSignUp.value;
+  dateOfBirth = txtDateOfBirthSignUp.value;
+  sexo = txtSexoSignUp.value;
+  email = txtEmailSignUp.value;
+  password = txtPasswordSignUp.value;
+  //los datos 
+  let dataUser = {};
+    const promise = auth.createUserWithEmailAndPassword(email, password).then(function(){
+      var user = firebase.auth().currentUser;
+      console.log(user);
+      dataUser.uid= user.uid;
+      dataUser.name = name;
+      dataUser.dateOfBirth = dateOfBirth;
+      dataUser.sexo= sexo;
+      dataUser.email= email;
+      dataUser.password = password;
+      guardarUsuarios(dataUser);
+      verificate();  
+    });
+    promise.catch(e => console.log(e.message));
+
+  }
+  
       
       //anaflavia
-  user.name = txtNameSignUp.value;
-  user.email = txtEmailSignUp.value;
-  user.password = txtPasswordSignUp.value;
-  if (user.email !== "" && user.password !== "" && txtConfirmPasswordSignUp.value !== "") {
-    if (txtConfirmPasswordSignUp.value === user.password) {
-      const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
-        verificate();
-      });
-      promise.catch(e => console.log(e.message));
-    } else {
-      M.toast({
-        html: "Las contraseñas no coinciden"
-      });
-    }
-  } else {
-    M.toast({
-      html: "Correo inválido o no completaste los campos"
-    });
-  }
-}
+//   user.name = txtNameSignUp.value;
+//   user.email = txtEmailSignUp.value;
+//   user.password = txtPasswordSignUp.value;
+//   if (user.email !== "" && user.password !== "" && txtConfirmPasswordSignUp.value !== "") {
+//     if (txtConfirmPasswordSignUp.value === user.password) {
+//       const promise = auth.createUserWithEmailAndPassword(user.email, user.password).then(() => {
+//         verificate();
+//       });
+//       promise.catch(e => console.log(e.message));
+//     } else {
+//       M.toast({
+//         html: "Las contraseñas no coinciden"
+//       });
+//     }
+//   } else {
+//     M.toast({
+//       html: "Correo inválido o no completaste los campos"
+//     });
+//   }
+// }
 
 
 const showSignUp = () => {
@@ -206,6 +222,7 @@ const showSignUp = () => {
   }
   sectionLogIn.hidden = true;
   sectionSelectionUsers.hidden = false;
+  
 }
 
 const showLogIn = () => {
@@ -215,6 +232,7 @@ const showLogIn = () => {
   }
   sectionSignUp.hidden = true;
   sectionLogIn.hidden = false;
+  
 }
 
 
@@ -254,11 +272,25 @@ let closeModel = () => {
   modal.style.display = "none";
 };
 
-// window.onclick = (event) => {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// 
+function makePost() {
+  const user = firebase.auth().currentUser;
+  let datePosted = new Date();
+  let posts ={
+    fecha: datePosted,
+    description: post.value
+  }
+  var key = firebase.database().ref().child('user').push().key;
+  var updates = {};
+  updates['/user/' + user.uid + '/posts' + '/' + key] = posts;
+  firebase.database().ref().update(updates, function(error) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("No hubo errores");
+    }
+  });
+
+}
 
 
 btnLogIn.addEventListener("click", () => ableBtnLogIn());
@@ -274,3 +306,4 @@ btnLogOut.addEventListener("click", () => logOut());
 btnFacebookSignUp.addEventListener("click", () => facebookAccount());
 btnGoogleSignUp.addEventListener("click", () => googleAccount());
 closeModal.addEventListener("click", () => closeModel());
+btnPublic.addEventListener("click", () => makePost());

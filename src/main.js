@@ -1,10 +1,10 @@
 let config = {
   apiKey: "AIzaSyADhe8BrL2a1vVRQnECNe4np96pxkwgoSw",
-    authDomain: "salutem-a2461.firebaseapp.com",
-    databaseURL: "https://salutem-a2461.firebaseio.com",
-    projectId: "salutem-a2461",
-    storageBucket: "salutem-a2461.appspot.com",
-    messagingSenderId: "953244358481"
+  authDomain: "salutem-a2461.firebaseapp.com",
+  databaseURL: "https://salutem-a2461.firebaseio.com",
+  projectId: "salutem-a2461",
+  storageBucket: "salutem-a2461.appspot.com",
+  messagingSenderId: "953244358481"
 };
 
 firebase.initializeApp(config);
@@ -31,13 +31,14 @@ const btnGoogleSignUp = document.getElementById("btn-google-sign-up");
 const sectionPostUser = document.getElementById('post-user');
 const btnPublic = document.getElementById('btnPublic');
 const post = document.getElementById('post');
+const postear = document.getElementById('postear');
+const contenidoPost = document.getElementById('contenido-post');
 
 // inputs
 const txtEmailLogIn = document.getElementById("txt-user-mail-login");
 const txtPasswordLogIn = document.getElementById("txt-user-password-login");
 const txtNameSignUp = document.getElementById("txt-user-name-signup");
-const txtDateOfBirthSignUp = document.getElementById("txt-date-of-birth-signup");
-const txtSexoSignUp = document.getElementById("txt-sexo-signup");
+
 const txtEmailSignUp = document.getElementById("txt-user-mail-signup");
 const txtPasswordSignUp = document.getElementById("txt-user-password-signup");
 const txtConfirmPasswordSignUp = document.getElementById("txt-user-confirm-password-signup");
@@ -50,7 +51,7 @@ const goToLogIn = document.getElementById("go-to-log-in");
 const goToSignUpUsers = document.getElementById("sign-up-users");
 const goToSignUpDoctors = document.getElementById("sign-up-doctors");
 
-function guardarUsuarios(user){
+function guardarUsuarios(user) {
   let uid = user.uid;
   delete user.uid;
   firebase.database().ref('user/' + uid).set(user);
@@ -76,7 +77,7 @@ window.onload = () => {
       // const providerData = user.providerData;
     } else console.log("no estas logueado");
   });
-  firebase.database().ref('/user').once('value').then(function(snapshot) {
+  firebase.database().ref('/user').once('value').then(function (snapshot) {
     console.log(snapshot.val());
   });
 }
@@ -95,13 +96,12 @@ const logOut = () => {
     sectionResponseSignUp.hidden = true;
     sectionSignUp.hidden = true;
     sectionLogIn.hidden = false;
-    sectionPostUser.hidden = true;
     console.log("saliste");
   });
 }
 
 const ableBtnLogIn = () => {
-  
+
   if (txtEmailLogIn.value.length > 0 && patronEmail.test(txtEmailLogIn.value)) {
     document.getElementById("incorrect-email").hidden = true;
     if (txtPasswordLogIn.value !== "" && txtPasswordLogIn.value !== null) {
@@ -139,17 +139,18 @@ const logIn = () => {
 const signUpUsers = () => {
   sectionSignUp.hidden = false;
   sectionSelectionUsers.hidden = true;
+  sectionPostUser.hidden = false;
   closeModel();
 }
 
 const verificate = () => {
   const user = firebase.auth().currentUser;
-  
+
   if (user) {
     user.sendEmailVerification().then(() => {
       console.log(user);
       console.log("se envió correo de verificación de cuenta al correo");
-      firebase.database().ref('/user/' + user.uid).once('value').then(function(snapshot) {
+      firebase.database().ref('/user/' + user.uid).once('value').then(function (snapshot) {
         console.log(snapshot.val());
         var username = (snapshot.val() && snapshot.val().name) || 'Anonymous';
         document.getElementById("user-name-sign-up").innerHTML = username;
@@ -168,30 +169,25 @@ const signUp = () => {
   const auth = firebase.auth();
   //genesis
   name = txtNameSignUp.value;
-  dateOfBirth = txtDateOfBirthSignUp.value;
-  sexo = txtSexoSignUp.value;
   email = txtEmailSignUp.value;
   password = txtPasswordSignUp.value;
   //los datos 
   let dataUser = {};
-    const promise = auth.createUserWithEmailAndPassword(email, password).then(function(){
-      var user = firebase.auth().currentUser;
-      console.log(user);
-      dataUser.uid= user.uid;
-      dataUser.name = name;
-      dataUser.dateOfBirth = dateOfBirth;
-      dataUser.sexo= sexo;
-      dataUser.email= email;
-      dataUser.password = password;
-      guardarUsuarios(dataUser);
-      verificate();  
-    });
-    promise.catch(e => console.log(e.message));
+  const promise = auth.createUserWithEmailAndPassword(email, password).then(function () {
+    var user = firebase.auth().currentUser;
+    dataUser.uid = user.uid;
+    dataUser.name = name;
+    dataUser.email = email;
+    dataUser.password = password;
+    guardarUsuarios(dataUser);
+    verificate();
+  });
+  promise.catch(e => console.log(e.message));
 
-  }
-  
-      
-      //anaflavia
+}
+
+
+//anaflavia
 //   user.name = txtNameSignUp.value;
 //   user.email = txtEmailSignUp.value;
 //   user.password = txtPasswordSignUp.value;
@@ -222,7 +218,7 @@ const showSignUp = () => {
   }
   sectionLogIn.hidden = true;
   sectionSelectionUsers.hidden = false;
-  
+
 }
 
 const showLogIn = () => {
@@ -232,7 +228,7 @@ const showLogIn = () => {
   }
   sectionSignUp.hidden = true;
   sectionLogIn.hidden = false;
-  
+
 }
 
 
@@ -240,8 +236,8 @@ const googleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    const person = result.user;
-    console.log(person.displayName);
+    const user = result.user;
+    console.log(user.displayName);
   }).catch(function (error) {
     console.log(error.code);
     console.log(error.message);
@@ -275,22 +271,30 @@ let closeModel = () => {
 function makePost() {
   const user = firebase.auth().currentUser;
   let datePosted = new Date();
-  let posts ={
+  let posts = {
     fecha: datePosted,
-    description: post.value
+    description: post.value,
+    uid:user.uid
   }
   var key = firebase.database().ref().child('user').push().key;
   var updates = {};
-  updates['/user/' + user.uid + '/posts' + '/' + key] = posts;
-  firebase.database().ref().update(updates, function(error) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("No hubo errores");
-    }
-  });
-
+  updates['/post/' + '/' + key] = posts;
+  firebase.database().ref().update(updates) 
+    return key;
+  // updates['/user-post/' + user.uid + '/' + key] = posts;
+  // firebase.database().ref().update(updates)
+  // return key;
+};
+function mostrarPost(){
+  const user = firebase.auth().currentUser;
+  firebase.database().ref('/post')
+  .on('child_added', (newPost) =>{
+    contenidoPost.innerHTML+=`
+    <p>${newPost.val().description}</p>
+    `
+  })
 }
+
 
 
 btnLogIn.addEventListener("click", () => ableBtnLogIn());
@@ -306,4 +310,4 @@ btnLogOut.addEventListener("click", () => logOut());
 btnFacebookSignUp.addEventListener("click", () => facebookAccount());
 btnGoogleSignUp.addEventListener("click", () => googleAccount());
 closeModal.addEventListener("click", () => closeModel());
-btnPublic.addEventListener("click", () => makePost());
+btnPublic.addEventListener("click", () => makePost(),mostrarPost());

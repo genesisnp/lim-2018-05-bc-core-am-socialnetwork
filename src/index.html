@@ -77,15 +77,6 @@
         <label for="txt-user-name-signup">Nombres y Apellidos</label>
         <span class="helper-text" data-error="Incorrecto" data-success="Bien"></span>
       </div>
-
-      <div class="input-field col s6">
-        <input id="txt-date-of-birth-signup" type="text" class="validate">
-        <label for="icon_prefix">Fecha de Nacimiento</label>
-      </div>
-      <div class="input-field col s6">
-        <input id="txt-sexo-signup" type="text" class="validate">
-        <label for="icon_SEX">Sexo</label>
-      </div>
       <div class="input-field col s12 input-sign-up">
         <i class="material-icons prefix">email</i>
         <input id="txt-user-mail-signup" type="email" class="validate">
@@ -129,9 +120,15 @@
   </section>
   <!-- POST -->
   <section id="post-user">
-    <textarea id="post" cols="30" rows="10"></textarea>
+    <textarea id="post" cols="30" rows="10" placeholder="Escribe tu Post"></textarea>
     <input type="button" value="Publicar" id="btnPublic">
   </section>
+
+  <div id="main-post">
+    <div id="contenido-post"></div>
+    <input type="button" value="editar" id="btn-editar">
+    <input type="button" value="delete" id="btn-delete">
+  </div>
 
   <section id="log-out" class="center-align" hidden>
     <button id="btn-log-out" class=" waves-effect waves-light btn-large btn-initial">SALIR</button>

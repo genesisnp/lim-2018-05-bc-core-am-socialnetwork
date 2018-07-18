@@ -1,6 +1,10 @@
 body {
+<<<<<<< HEAD
   background: #FCFADA;
   margin: 0;
+=======
+  background: #ffffff;
+>>>>>>> 805940b518cea9f87ab20e5a8d6c06b3719206c0
   font-family: 'Roboto', sans-serif;
 }
 
@@ -11,12 +15,21 @@ header {
 }
 
 header img {
+<<<<<<< HEAD
   margin-left: -10%;
   width: 40%;
+=======
+  margin-left: 15%;
+  width: 70px;
+>>>>>>> 805940b518cea9f87ab20e5a8d6c06b3719206c0
 }
 
 header p {
   margin: 0;
+}
+
+nav a {
+  margin-right: 15% !;
 }
 
 body section {
@@ -39,6 +52,7 @@ body section {
 
 .input-sign-up {
   margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
 }
 
 .selection-image {
@@ -105,4 +119,23 @@ body section {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+<<<<<<< HEAD
 }
+=======
+}
+
+nav {
+  background-color: #1DB4BF !important;
+  height: 70px !important;
+  margin-bottom: 5%;
+}
+
+
+#slide-out {
+  color: #000000 !important;
+}
+
+.heart {
+  cursor: pointer;
+}
+>>>>>>> 805940b518cea9f87ab20e5a8d6c06b3719206c0

@@ -1,0 +1,222 @@
+body {
+  background: #ffffff;
+
+}
+
+header {
+  background: #1DB4BF;
+  color: #ffffff;
+  font-size: 100%;
+}
+
+header img {
+  margin-left: 15%;
+  width: 70px;
+}
+
+header p {
+  margin: 0;
+}
+
+nav a {
+  font-family: 'Dosis', sans-serif;
+  margin-right: 15% !;
+}
+
+body section {
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 2%;
+  /* margin-right: 5%; */
+}
+
+.btn-log-in-social {
+  margin: 5%;
+  display: block;
+}
+
+.spaces {
+  margin-top: 15% !important;
+}
+
+.spaces-signup {
+  margin-top: 7% !important;
+}
+
+.btn-initial {
+  background: #1DB4BF !important;
+}
+
+.input-sign-up {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+.input-sign-up-doctors {
+  margin-top: -0.5rem !important;
+}
+
+.selection-image {
+  width: 40%;
+}
+
+#main-sign-up {
+  margin-top: 10% !important;
+}
+
+#select-user {
+  margin-top: 5% !important;
+}
+
+.helper-text {
+  text-align: right !important;
+}
+
+.helper-text-wrong {
+  color: #F44336;
+}
+
+/* Modal Register */
+
+.modal-signup {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  margin: 0%;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+
+.modal-content-signup {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.btn-social {
+  display: block;
+  width: 90%;
+  margin: 5%;
+}
+
+/* The Close Button */
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+nav {
+  background-color: #1DB4BF !important;
+  height: 70px !important;
+  margin-bottom: 5%;
+}
+
+
+#slide-out {
+  color: #000000 !important;
+}
+
+/* CSS MURO */
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  /* border: 1px solid #ccc; */
+  background-color: #ffffff;
+  width: 100%;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #FAB768;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  /* border: 1px solid #ccc; */
+  border-top: none;
+}
+
+main {
+  margin-top: 5%;
+  float: left;
+  width: 70%;
+}
+
+.heart {
+  cursor: pointer;
+}
+
+#popularTags {
+  margin-top: 10%;
+  width: 30%;
+  float: left !important;
+}
+
+#textarea {
+  border-bottom: none;
+}
+
+.image-post {
+  width: 60px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .tab {
+    display: none;
+  }
+
+  #popularTags {
+    display: none;
+  }
+  
+  main {
+    width: 100%;
+  }
+}
+
+table tr {
+font-size: 14px !important;
+}
+
